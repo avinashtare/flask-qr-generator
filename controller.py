@@ -5,14 +5,6 @@ import qrcode
 from flask import jsonify
 
 
-# qr initsalisation
-qr = qrcode.QRCode(
-    version=1,
-    error_correction=qrcode.constants.ERROR_CORRECT_L,
-    box_size=10,
-    border=2,
-)
-
 # image to base64 converter
 def image_to_base64_url(file_path):
     with open(file_path, "rb") as image_file:
@@ -31,6 +23,13 @@ def image_to_base64_url(file_path):
         return data_url
 
 def createQr(text):
+    # qr config
+    qr = qrcode.QRCode(
+    version=1,
+    error_correction=qrcode.constants.ERROR_CORRECT_L,
+    box_size=10,
+    border=2,
+    )
     # create a uniq id  for filename
     filename = "/"+str(uuid.uuid4())+".png"
     # full path
